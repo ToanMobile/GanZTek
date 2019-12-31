@@ -1,3 +1,4 @@
+import 'package:ganz_tek/generated/json/base/json_convert_content.dart';
 import '../../common/constant.dart';
 
 class BaseEntity<T>{
@@ -29,7 +30,7 @@ class BaseEntity<T>{
     } else if (T.toString() == "Map<dynamic, dynamic>") {
       return json as S;
     } else {
-      return EntityFactory.generateOBJ(json);
+     return JsonConvert.fromJsonAsT(json);
     }
   }
 }

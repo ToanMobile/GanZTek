@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:ganz_tek/data/service/api.dart';
+import 'package:ganz_tek/data/service/error_handle.dart';
+import 'package:ganz_tek/data/service/net.dart';
 import 'package:ganz_tek/generated/i18n.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -62,18 +63,17 @@ class ViewStateModel with ChangeNotifier {
     ErrorType errorType = ErrorType.defaultError;
     if (e is DioError) {
       e = e.error;
-      if (e is UnAuthorizedException) {
+      /*if (e is ExceptionHandle.unauthorized) {
         stackTrace = null;
-
-        /// 已在onUnAuthorizedException中处理
         setUnAuthorized();
         return;
-      } else if (e is NotSuccessException) {
+      } else if (e is ExceptionHandle.cancel_error) {
         stackTrace = null;
         message = e.message;
       } else {
         errorType = ErrorType.networkError;
-      }
+      }*/
+      errorType = ErrorType.networkError;
     }
     viewState = ViewState.error;
     _viewStateError = ViewStateError(

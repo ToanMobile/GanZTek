@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ganz_tek/config/storage_manager.dart';
 import 'package:ganz_tek/data/model/login_entity.dart';
+import 'package:ganz_tek/data/service/base_entity.dart';
 
 class UserModel extends ChangeNotifier {
   static const String kUser = 'PrefLogin';
@@ -13,7 +14,7 @@ class UserModel extends ChangeNotifier {
 
   UserModel() {
     var userMap = StorageManager.localStorage.getItem(kUser);
-    _loginEntity = userMap != null ? LoginEntity.fromJson(userMap) : null;
+    _loginEntity = userMap != null ? BaseEntity.fromJson(userMap) as LoginEntity : null;
   }
 
   saveUser(LoginEntity loginEntity) {

@@ -3,12 +3,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:logger/logger.dart';
 import 'package:sprintf/sprintf.dart';
 import 'dio_utils.dart';
 import 'error_handle.dart';
-
-var logger = Logger();
 
 class AuthInterceptor extends Interceptor{
   @override
@@ -34,7 +31,7 @@ class TokenInterceptor extends Interceptor{
         return json.decode(response.data.toString())["access_token"];
       }
     } catch(e) {
-      logger.d("Token error！");
+      DioUtils.instance.logger.d("Token error！");
     }
     return null;
   }
@@ -52,7 +49,7 @@ class TokenInterceptor extends Interceptor{
       dio.interceptors.requestLock.unlock();
 
       if (accessToken != null) {
-        logger.d("NewToken: $accessToken");
+        DioUtils.instance.logger.d("NewToken: $accessToken");
         var request = response.request;
         request.headers["Authorization"] = "Bearer $accessToken";
         try {
@@ -73,7 +70,6 @@ class TokenInterceptor extends Interceptor{
 }
 
 class LoggingInterceptor extends Interceptor{
-  var logger = Logger();
   DateTime startTime;
   DateTime endTime;
   
@@ -81,14 +77,14 @@ class LoggingInterceptor extends Interceptor{
   onRequest(RequestOptions options) {
     startTime = DateTime.now();
     if (options.queryParameters.isEmpty) {
-      logger.d("RequestUrl: " + options.baseUrl + options.path);
+      DioUtils.instance.logger.d("RequestUrl: " + options.baseUrl + options.path);
     } else {
-      logger.d("RequestUrl: " + options.baseUrl + options.path + "?" + Transformer.urlEncodeMap(options.queryParameters));
+      DioUtils.instance.logger.d("RequestUrl: " + options.baseUrl + options.path + "?" + Transformer.urlEncodeMap(options.queryParameters));
     }
-    logger.d("RequestMethod: " + options.method);
-    logger.d("RequestHeaders:" + options.headers.toString());
-    logger.d("RequestContentType: ${options.contentType}");
-    logger.d("RequestData: ${options.data.toString()}");
+    DioUtils.instance.logger.d("RequestMethod: " + options.method);
+    DioUtils.instance.logger.d("RequestHeaders:" + options.headers.toString());
+    DioUtils.instance.logger.d("RequestContentType: ${options.contentType}");
+    DioUtils.instance.logger.d("RequestData: ${options.data.toString()}");
     return super.onRequest(options);
   }
   
@@ -97,18 +93,18 @@ class LoggingInterceptor extends Interceptor{
     endTime = DateTime.now();
     int duration = endTime.difference(startTime).inMilliseconds;
     if (response.statusCode == ExceptionHandle.success) {
-      logger.d("ResponseCode: ${response.statusCode}");
+      DioUtils.instance.logger.d("ResponseCode: ${response.statusCode}");
     } else {
-      logger.e("ResponseCode: ${response.statusCode}");
+      DioUtils.instance.logger.e("ResponseCode: ${response.statusCode}");
     }
-    logger.d(response.data.toString());
-    logger.d("----------End: $duration 毫秒----------");
+    DioUtils.instance.logger.d(response.data.toString());
+    DioUtils.instance.logger.d("----------End: $duration 毫秒----------");
     return super.onResponse(response);
   }
   
   @override
   onError(DioError err) {
-    logger.d("----------Error-----------");
+    DioUtils.instance.logger.d("----------Error-----------");
     return super.onError(err);
   }
 }
@@ -174,15 +170,15 @@ class AdapterInterceptor extends Interceptor{
               msg = "未知异常";
             }
             result = sprintf(failureFormat, [response.statusCode, msg]);
-            // 401 token失效时，单独处理，其他一律为成功
+            // 401 token
             if (response.statusCode == ExceptionHandle.unauthorized) {
               response.statusCode = ExceptionHandle.unauthorized;
             } else {
               response.statusCode = ExceptionHandle.success;
             }
           } catch (e) {
-            logger.d("异常信息：$e");
-            // 解析异常直接按照返回原数据处理（一般为返回500,503 HTML页面代码）
+            DioUtils.instance.logger.d("异常信息：$e");
+            //500,503
             result = sprintf(failureFormat, [response.statusCode, "服务器异常(${response.statusCode})"]);
           }
         }

@@ -11,7 +11,9 @@ import 'error_handle.dart';
 import 'intercept.dart';
 
 class DioUtils {
-  var logger = Logger();
+  var logger = Logger(
+    printer: PrettyPrinter(),
+  );
 
   static final DioUtils _singleton = DioUtils._internal();
 

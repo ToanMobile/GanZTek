@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.text = 'soluuhuong1236';
     return ViewModelProvider<LoginModel>.withoutConsumer(
       viewModel: LoginModel(),
-      onModelReady: (model) => model.login(_nameController.text, _passwordController.text),
+      onModelReady: (model) => model.test(),
       builder: (context, model, _) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: ColorsUtils.pale,

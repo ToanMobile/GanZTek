@@ -1,11 +1,16 @@
 import 'package:ganz_tek/config/storage_manager.dart';
 import 'package:ganz_tek/data/model/login_entity.dart';
 import 'package:ganz_tek/data/repository/repository.dart';
+import 'package:ganz_tek/data/service/base_entity.dart';
 import 'package:ganz_tek/provider/view_state_model.dart';
 
 class LoginModel extends ViewStateModel {
 
-  LoginEntity getLogin() => LoginEntity.fromJson(StorageManager.getObject(StorageManager.preLoginUser));
+  LoginEntity getLogin() => BaseEntity.fromJson(StorageManager.getObject(StorageManager.preLoginUser)) as LoginEntity;
+
+  Future<bool> test() async {
+    return false;
+  }
 
   Future<bool> login(loginName, password) async {
     setBusy();
