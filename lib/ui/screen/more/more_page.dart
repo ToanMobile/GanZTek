@@ -11,7 +11,6 @@ class MoreState extends State<MorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsUtils.offWhite,
       body: Stack(
         children: <Widget>[
           Center(

@@ -8,6 +8,7 @@ class ImagesUtils {
   //Image
   static const String bgLogin = "$imageDir/bg_login.webp";
   static const String bgLoginSuccess = "$imageDir/bg_registered_successfully.webp";
+  static const String bgHeader = "$imageDir/bg_header.webp";
 
   //Icon
   static const String iconWerry = "$imageIcon/icon_werry.svg";

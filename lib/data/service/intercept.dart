@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -7,21 +5,20 @@ import 'package:sprintf/sprintf.dart';
 import 'dio_utils.dart';
 import 'error_handle.dart';
 
-class AuthInterceptor extends Interceptor{
+class AuthInterceptor extends Interceptor {
   @override
   onRequest(RequestOptions options) {
-    String accessToken = "";//SpUtil.getString(Constant.accessToken);
+    String accessToken = ""; //SpUtil.getString(Constant.accessToken);
     if (accessToken.isNotEmpty) {
       options.headers["Authorization"] = "Bearer $accessToken";
     }
-   
+
     return super.onRequest(options);
   }
 }
 
-class TokenInterceptor extends Interceptor{
+class TokenInterceptor extends Interceptor {
   Future<String> getToken() async {
-
     Map<String, String> params = Map();
     //params["refresh_token"] = SpUtil.getString(Constant.refreshToken);
     try {
@@ -30,7 +27,7 @@ class TokenInterceptor extends Interceptor{
       if (response.statusCode == ExceptionHandle.success) {
         return json.decode(response.data.toString())["access_token"];
       }
-    } catch(e) {
+    } catch (e) {
       DioUtils.instance.logger.d("Token error！");
     }
     return null;
@@ -39,7 +36,7 @@ class TokenInterceptor extends Interceptor{
   Dio _tokenDio = Dio();
 
   @override
-  onResponse(Response response) async{
+  onResponse(Response response) async {
     //401代表token过期
     if (response != null && response.statusCode == ExceptionHandle.unauthorized) {
       Dio dio = DioUtils.instance.getDio();
@@ -69,10 +66,10 @@ class TokenInterceptor extends Interceptor{
   }
 }
 
-class LoggingInterceptor extends Interceptor{
+class LoggingInterceptor extends Interceptor {
   DateTime startTime;
   DateTime endTime;
-  
+
   @override
   onRequest(RequestOptions options) {
     startTime = DateTime.now();
@@ -81,13 +78,10 @@ class LoggingInterceptor extends Interceptor{
     } else {
       DioUtils.instance.logger.d("RequestUrl: " + options.baseUrl + options.path + "?" + Transformer.urlEncodeMap(options.queryParameters));
     }
-    DioUtils.instance.logger.d("RequestMethod: " + options.method);
-    DioUtils.instance.logger.d("RequestHeaders:" + options.headers.toString());
-    DioUtils.instance.logger.d("RequestContentType: ${options.contentType}");
-    DioUtils.instance.logger.d("RequestData: ${options.data.toString()}");
+    DioUtils.instance.logger.d("RequestMethod: ${options.method} \n RequestHeaders: ${options.headers.toString()} \n RequestContentType: ${options.contentType} \n RequestData:${options.data.toString()}");
     return super.onRequest(options);
   }
-  
+
   @override
   onResponse(Response response) {
     endTime = DateTime.now();
@@ -97,11 +91,10 @@ class LoggingInterceptor extends Interceptor{
     } else {
       DioUtils.instance.logger.e("ResponseCode: ${response.statusCode}");
     }
-    DioUtils.instance.logger.d(response.data.toString());
-    DioUtils.instance.logger.d("----------End: $duration 毫秒----------");
+    DioUtils.instance.logger.d("${response.data.toString()} \n ----------End: $duration End----------");
     return super.onResponse(response);
   }
-  
+
   @override
   onError(DioError err) {
     DioUtils.instance.logger.d("----------Error-----------");
@@ -109,8 +102,7 @@ class LoggingInterceptor extends Interceptor{
   }
 }
 
-class AdapterInterceptor extends Interceptor{
-
+class AdapterInterceptor extends Interceptor {
   static const String msg = "msg";
   static const String slash = "\"";
   static const String message = "message";
@@ -120,13 +112,13 @@ class AdapterInterceptor extends Interceptor{
 
   static const String failureFormat = "{\"code\":%d,\"message\":\"%s\"}";
   static const String successFormat = "{\"code\":0,\"data\":%s,\"message\":\"\"}";
-  
+
   @override
   onResponse(Response response) {
     Response r = adapterData(response);
     return super.onResponse(r);
   }
-  
+
   @override
   onError(DioError err) {
     if (err.response != null) {
@@ -138,6 +130,7 @@ class AdapterInterceptor extends Interceptor{
   Response adapterData(Response response) {
     String result;
     String content = response.data == null ? "" : response.data.toString();
+
     /// 成功时，直接格式化返回
     if (response.statusCode == ExceptionHandle.success || response.statusCode == ExceptionHandle.success_not_content) {
       if (content == null || content.isEmpty) {
@@ -188,4 +181,3 @@ class AdapterInterceptor extends Interceptor{
     return response;
   }
 }
-

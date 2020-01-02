@@ -16,7 +16,6 @@ class ChallengeState extends State<ChallengePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsUtils.offWhite,
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: DimensUtils.size16),
         child: Column(

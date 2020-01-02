@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ganz_tek/generated/i18n.dart';
+import 'package:ganz_tek/ui/screen/widgetapp/bg_header_widget.dart';
 import 'package:ganz_tek/ui/widget/text_input_search.dart';
 import 'package:ganz_tek/res/resources.dart';
 import 'package:ganz_tek/res/colors.dart';
@@ -20,27 +21,30 @@ class HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsUtils.offWhite,
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            buildTextUserName(),
-            SizeBoxUtils.hGap10,
-            buildTextSearch(),
-            SizeBoxUtils.hGap20,
-            buildSearchView(),
-            buildListSuggest(),
-            SizeBoxUtils.hGap20,
-            buildCarouselSlider(),
-            SizeBoxUtils.hGap20,
-            buildTextMenu(),
-            SizeBoxUtils.hGap20,
-            buildMenu(),
-          ],
-        ),
-      ),
+          child: Stack(
+        children: <Widget>[
+          BackgroundHeader(isFull: true),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              buildTextUserName(),
+              SizeBoxUtils.hGap10,
+              buildTextSearch(),
+              SizeBoxUtils.hGap20,
+              buildSearchView(),
+              buildListSuggest(),
+              SizeBoxUtils.hGap20,
+              buildCarouselSlider(),
+              SizeBoxUtils.hGap20,
+              buildTextMenu(),
+              SizeBoxUtils.hGap20,
+              buildMenu(),
+            ],
+          ),
+        ],
+      )),
     );
   }
 

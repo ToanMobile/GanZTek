@@ -11,7 +11,6 @@ class ReviewState extends State<ReviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsUtils.offWhite,
       body: Stack(
         children: <Widget>[
           Center(

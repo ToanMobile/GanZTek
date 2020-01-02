@@ -1,14 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:ganz_tek/common/constant.dart';
-import 'package:ganz_tek/config/router_manger.dart';
 import 'package:ganz_tek/generated/i18n.dart';
 import 'package:ganz_tek/ui/screen/login/widget/login_bg_widget.dart';
+import 'package:ganz_tek/ui/screen/login/widget/login_progress_widget.dart';
 import 'package:ganz_tek/ui/screen/login/widget/signup_widget.dart';
 import 'package:ganz_tek/ui/widget/app_bar.dart';
-import 'package:ganz_tek/ui/widget/button_progress_indicator.dart';
-import 'package:ganz_tek/ui/widget/filled_round_button.dart';
 import 'package:ganz_tek/res/colors.dart';
 import 'package:ganz_tek/res/dimens.dart';
 import 'package:ganz_tek/res/sizebox.dart';
@@ -41,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.text = 'soluuhuong1236';
     return ViewModelProvider<LoginModel>.withoutConsumer(
       viewModel: LoginModel(),
-      onModelReady: (model) => model.test(),
+      onModelReady: (model) => model.idle,
       builder: (context, model, _) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: ColorsUtils.pale,
@@ -82,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                     textInputAction: TextInputAction.done,
                   ),
                   SizeBoxUtils.hGap30,
-                  LoginButton(_formKey, _nameController, _passwordController)
+                  LoginProgressButton(_formKey, _nameController, _passwordController, null)
                 ]),
               ),
             )
@@ -97,49 +93,4 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildTextUserName() => Text(S.of(context).login_username, style: TextStylesUtils.styleAvenir12BrownGreyW400);
 
   Widget buildTextPassword() => Text(S.of(context).login_password, style: TextStylesUtils.styleAvenir12BrownGreyW400);
-}
-
-class LoginButton extends StatelessWidget {
-  final nameController;
-  final passwordController;
-  final _formKey;
-
-  LoginButton(this._formKey, this.nameController, this.passwordController);
-
-  @override
-  Widget build(BuildContext context) {
-    var model = Provider.of<LoginModel>(context);
-    Widget child = model.busy
-        ? Container(
-            height: DimensUtils.size50,
-            child: Center(
-              child: ButtonProgressIndicator(),
-            ),
-          )
-        : Container(
-            height: DimensUtils.size50,
-            child: Center(
-              child: Text(
-                S.of(context).signIn,
-                style: TextStylesUtils.styleAvenir14WhiteW600,
-              ),
-            ),
-          );
-    return FilledRoundButton.withGradient(
-        radius: DimensUtils.size10,
-        gradientColor: Constant.gradient_WaterMelon_Melon,
-        child: child,
-        cb: () {
-          //var formState = Form.of(context);
-          if (_formKey.currentState.validate()) {
-            model.login(nameController.text, passwordController.text).then((value) {
-              if (value) {
-                Navigator.pushNamed(context, RouteName.home);
-              } else {
-                model.showErrorMessage(context);
-              }
-            });
-          }
-        });
-  }
 }

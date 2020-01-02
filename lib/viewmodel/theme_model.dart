@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ganz_tek/config/storage_manager.dart';
 import 'package:ganz_tek/generated/i18n.dart';
 import 'package:ganz_tek/help/theme_helper.dart';
+import 'package:ganz_tek/res/colors.dart';
 
 class ThemeModel with ChangeNotifier {
   static const kThemeColorIndex = 'kThemeColorIndex';
@@ -26,7 +27,7 @@ class ThemeModel with ChangeNotifier {
     _userDarkMode = StorageManager.sharedPreferences?.getBool(kThemeUserDarkMode) ?? false;
 
     /// 获取主题色
-    _themeColor = Colors.primaries[StorageManager.sharedPreferences?.getInt(kThemeColorIndex) ?? 5];
+    _themeColor = Colors.primaries[StorageManager.sharedPreferences?.getInt(kThemeColorIndex) ?? 1];
 
     /// 获取字体
     _fontIndex = StorageManager.sharedPreferences?.getInt(kFontIndex) ?? 0;
