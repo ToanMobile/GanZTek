@@ -60,5 +60,11 @@
   "feedback": "Phản hồi",
   "autoBySystem": "Auto",
   "fieldNotNull": "không trống",
-  "noAccount": "Không tìm thấy tài khoản?"
+  "noAccount": "Không tìm thấy tài khoản?",
+  "tab_more_notification": "Thông báo",
+  "tab_more_des_notification": "Cập nhật những thông tin mới nhất từ chúng tôi",
+  "tab_more_gift": "Đổi thưởng",
+  "tab_more_des_gift": "Nhiều phần quà hấp dẫn đang đợi bạn!",
+  "tab_more_crash_back": "Hoàn tiền",
+  "tab_more_des_crash_back": "Mua sắm và nhận hoàn tiền trong thời gian ngắn"
 }

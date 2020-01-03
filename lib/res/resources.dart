@@ -36,6 +36,11 @@ class ImagesUtils {
   static const String iconChallengeClock = "$imageIcon/icon_clock.svg";
   static const String iconChallengeRewards = "$imageIcon/icon_rewards.svg";
 
+  //Icon More
+  static const String iconMoreNotification = "$imageIcon/ic_notification.svg";
+  static const String iconMoreGift = "$imageIcon/ic_gift.svg";
+  static const String iconMoreCrashBack = "$imageIcon/ic_crash_back.svg";
+
   //Demo test
   static const String imageCarousel = "assets/demo/carousel_slider1.webp";
   static const String imagePercent = "assets/demo/img_percent.webp";

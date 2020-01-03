@@ -72,6 +72,12 @@ class S implements WidgetsLocalizations {
   String get tab_challenge => "Challenge";
   String get tab_home => "Homepage";
   String get tab_more => "Expand";
+  String get tab_more_crash_back => "Hoàn tiền";
+  String get tab_more_des_crash_back => "Mua sắm và nhận hoàn tiền trong thời gian ngắn";
+  String get tab_more_des_gift => "Nhiều phần quà hấp dẫn đang đợi bạn!";
+  String get tab_more_des_notification => "Cập nhật những thông tin mới nhất từ chúng tôi";
+  String get tab_more_gift => "Đổi thưởng";
+  String get tab_more_notification => "Thông báo";
   String get tab_personal => "Personal";
   String get tab_review => "Reviews";
   String get theme => "Theme";
@@ -104,6 +110,8 @@ class $vi_VN extends S {
   String get about => "Thông tin";
   @override
   String get challenge_list => "Danh sách thử thách";
+  @override
+  String get tab_more_notification => "Thông báo";
   @override
   String get signUp => "Đăng ký";
   @override
@@ -159,6 +167,8 @@ class $vi_VN extends S {
   @override
   String get tab_personal => "Cá nhân";
   @override
+  String get tab_more_des_gift => "Nhiều phần quà hấp dẫn đang đợi bạn!";
+  @override
   String get login_confirm_password => "Xác nhận mật khẩu";
   @override
   String get register_content2 => "\u0020nhé";
@@ -168,6 +178,8 @@ class $vi_VN extends S {
   String get register_content1 => "Bạn đã có tài khoản? Vậy hãy\u0020";
   @override
   String get challenge_before => "Trước đây";
+  @override
+  String get tab_more_gift => "Đổi thưởng";
   @override
   String get splashSkip => "Bỏ qua";
   @override
@@ -184,6 +196,8 @@ class $vi_VN extends S {
   String get login_title => "Tên đăng nhập";
   @override
   String get actionCancel => "Huỷ";
+  @override
+  String get tab_more_des_notification => "Cập nhật những thông tin mới nhất từ chúng tôi";
   @override
   String get theme => "Chủ đề";
   @override
@@ -203,6 +217,8 @@ class $vi_VN extends S {
   @override
   String get challenge_now => "Hiện tại";
   @override
+  String get tab_more_des_crash_back => "Mua sắm và nhận hoàn tiền trong thời gian ngắn";
+  @override
   String get needLogin => "Cần đăng nhập";
   @override
   String get home_menu_fashion => "Thời trang";
@@ -210,6 +226,8 @@ class $vi_VN extends S {
   String get signIn => "Đăng nhập";
   @override
   String get viewStateButtonLogin => "Đăng nhập";
+  @override
+  String get tab_more_crash_back => "Hoàn tiền";
   @override
   String get register_content => "Cảm ơn bạn đã dành thời gian đăng ký tài khoản cùng Werry. Bây giờ hãy bắt đầu trải nghiệm nhé!";
   @override

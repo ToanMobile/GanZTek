@@ -22,29 +22,30 @@ class HomeState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          child: Stack(
-        children: <Widget>[
-          BackgroundHeader(isFull: true),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              buildTextUserName(),
-              SizeBoxUtils.hGap10,
-              buildTextSearch(),
-              SizeBoxUtils.hGap20,
-              buildSearchView(),
-              buildListSuggest(),
-              SizeBoxUtils.hGap20,
-              buildCarouselSlider(),
-              SizeBoxUtils.hGap20,
-              buildTextMenu(),
-              SizeBoxUtils.hGap20,
-              buildMenu(),
-            ],
-          ),
-        ],
-      )),
+        child: Stack(
+          children: <Widget>[
+            BackgroundHeader(isFull: true),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                buildTextUserName(),
+                SizeBoxUtils.hGap10,
+                buildTextSearch(),
+                SizeBoxUtils.hGap20,
+                buildSearchView(),
+                buildListSuggest(),
+                SizeBoxUtils.hGap20,
+                buildCarouselSlider(),
+                SizeBoxUtils.hGap20,
+                buildTextMenu(),
+                SizeBoxUtils.hGap20,
+                buildMenu(),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 
