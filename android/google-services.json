@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "279158503327",
+    "firebase_url": "https://ganztek.firebaseio.com",
+    "project_id": "ganztek",
+    "storage_bucket": "ganztek.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279158503327:android:cdc96f0c421912196f6faa",
+        "android_client_info": {
+          "package_name": "com.ganz_tek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279158503327-916oce7djl632uood707gffjsahbn684.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ganz_tek",
+            "certificate_hash": "bcf83ba859d82709ee1b0ccd45f3c415f46aa7d6"
+          }
+        },
+        {
+          "client_id": "279158503327-rkcb1lo7kfbckog0gtm1r1trvn71g95g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6nMcEH_QWM5_Acp-daA6heiSkBiMsP0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279158503327-rkcb1lo7kfbckog0gtm1r1trvn71g95g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

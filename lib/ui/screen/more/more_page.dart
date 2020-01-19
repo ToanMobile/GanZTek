@@ -16,32 +16,35 @@ class MoreState extends State<MorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            BackgroundHeader(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[buildTextTitleMore(), SizeBoxUtils.hGap10, buildListMore()],
-            ),
-          ],
-        ),
+      body: Stack(
+        children: <Widget>[
+          BackgroundHeader(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[buildTextTitleMore(), SizeBoxUtils.hGap30, buildListMore()],
+          ),
+        ],
       ),
     );
   }
 
-  Widget buildTextTitleMore() => Text(S.of(context).tab_more, textAlign: TextAlign.center, style: TextStylesUtils.styleAvenir15BlackW600);
+  Widget buildTextTitleMore() => Container(
+        padding: EdgeInsets.only(top: DimensUtils.size100),
+        child: Center(
+          child: Text(S.of(context).tab_more, textAlign: TextAlign.center, style: TextStylesUtils.styleAvenir15BlackW600),
+        ),
+      );
 
   Widget buildListMore() {
     final image = [ImagesUtils.iconMoreNotification, ImagesUtils.iconMoreGift, ImagesUtils.iconMoreCrashBack];
     final titles = [S.of(context).tab_more_notification, S.of(context).tab_more_gift, S.of(context).tab_more_crash_back];
     final des = [S.of(context).tab_more_des_notification, S.of(context).tab_more_des_gift, S.of(context).tab_more_des_crash_back];
-    return Container(
-      height: DimensUtils.size350,
-      alignment: Alignment.topCenter,
+    return Expanded(
+      flex: 1,
       child: ListView.builder(
         itemCount: titles.length,
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Container(
             height: DimensUtils.size120,
@@ -54,15 +57,12 @@ class MoreState extends State<MorePage> {
             ),
             child: Row(
               children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: SvgPicture.asset(image[index])
-                ),
+                Expanded(flex: 1, child: SvgPicture.asset(image[index])),
                 SizeBoxUtils.wGap8,
                 Expanded(
                   flex: 2,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(titles[index], style: TextStylesUtils.styleAvenir12BlackW600),

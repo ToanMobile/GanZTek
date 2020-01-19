@@ -1,6 +1,6 @@
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ganz_tek/common/constant.dart';
 import 'package:ganz_tek/config/router_manger.dart';
@@ -13,7 +13,7 @@ import 'package:ganz_tek/res/text_styles.dart';
 import 'package:ganz_tek/ui/screen/login/widget/login_bg_widget.dart';
 import 'package:ganz_tek/ui/widget/filled_round_button.dart';
 import 'package:ganz_tek/utils/screen_utils.dart';
-//import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 enum Login { FACEBOOK, GOOGLE }
 
@@ -23,7 +23,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class WelcomeState extends State<WelcomePage> {
- // var firebaseAuth = FirebaseAuth.instance;
+  var firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -121,13 +121,13 @@ class WelcomeState extends State<WelcomePage> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      //_handleSignIn(Login.FACEBOOK);
+                      _handleSignIn(Login.FACEBOOK);
                     },
                     child: SvgPicture.asset(ImagesUtils.iconFacebook, height: DimensUtils.size70),
                   ),
                   InkWell(
                     onTap: () {
-                     // _handleSignIn(Login.GOOGLE);
+                      _handleSignIn(Login.GOOGLE);
                     },
                     child: SvgPicture.asset(ImagesUtils.iconGoogle, height: DimensUtils.size70),
                   ),
@@ -137,7 +137,7 @@ class WelcomeState extends State<WelcomePage> {
           ],
         ),
       );
-/*
+
   Future<int> _handleSignIn(Login type) async {
     switch (type) {
       case Login.FACEBOOK:
@@ -187,5 +187,5 @@ class WelcomeState extends State<WelcomePage> {
     GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly']);
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     return googleSignInAccount;
-  }*/
+  }
 }
